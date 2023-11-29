@@ -645,7 +645,7 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView {
             if (appBar != null) {
                 appBar.setFitsSystemWindows(false);
             }
-            View annotToolbar = findViewById(R.id.annotationToolbar);
+            View annotToolbar = findViewById(R.id.annotation_toolbar);
             if (annotToolbar != null) {
                 annotToolbar.setFitsSystemWindows(false);
             }
@@ -888,7 +888,7 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView {
     }
 
     @Override
-    public void onOpenDocError() {
+    public boolean onOpenDocError() {
         super.onOpenDocError();
 
         String error = "Unknown error";
@@ -915,6 +915,7 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView {
             error = mPdfViewCtrlTabHostFragment.getString(messageId);
         }
         onReceiveNativeEvent(ON_DOCUMENT_ERROR, error);
+        return  false;
     }
 
     public void importAnnotationCommand(String xfdfCommand, boolean initialLoad) throws PDFNetException {
