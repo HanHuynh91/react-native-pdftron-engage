@@ -915,7 +915,7 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView {
             error = mPdfViewCtrlTabHostFragment.getString(messageId);
         }
         onReceiveNativeEvent(ON_DOCUMENT_ERROR, error);
-        return  false;
+        return  true;
     }
 
     public void importAnnotationCommand(String xfdfCommand, boolean initialLoad) throws PDFNetException {
