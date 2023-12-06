@@ -29,6 +29,7 @@
         android:id="@id/redo"
         android:icon="@drawable/ic_redo_black_24dp"
         android:title="@string/redo"
+        android:visible="false"
         app:showAsAction="never" />
 
     <item
