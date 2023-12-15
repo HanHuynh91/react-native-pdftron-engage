@@ -733,14 +733,14 @@ NS_ASSUME_NONNULL_END
 {
     PTPDFViewCtrl *pdfViewCtrl = self.documentViewController.pdfViewCtrl;
 
-    PTPageLabelManager *manager = self.documentViewController.toolManager.pageLabelManager;
+//    PTPageLabelManager *manager = self.documentViewController.toolManager.pageLabelManager;
 
     NSError *error = nil;
     [pdfViewCtrl DocLock:YES withBlock:^(PTPDFDoc * _Nullable doc) {
     
         for (int i = 0; i < [mapping count]; i++){
             NSString *item = [mapping objectAtIndex:i];
-            [manager setPageLabelStyle:item prefix:item startValue:i+1 fromPageNumber:i+1 toPageNumber:i+1];
+//            [manager setPageLabelStyle:item prefix:item startValue:i+1 fromPageNumber:i+1 toPageNumber:i+1];
         }
 
     } error:&error];
