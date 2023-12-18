@@ -171,7 +171,7 @@ NS_ASSUME_NONNULL_END
     navigationController.navigationBarHidden = !self.topToolbarEnabled;
     
     UINavigationBarAppearance *newNavBarAppearance = [self customNavBarAppearance];
-        if (newNavBarAppearance) {
+    if (newNavBarAppearance) {
         navigationController.navigationBar.scrollEdgeAppearance = newNavBarAppearance;
         navigationController.navigationBar.compactAppearance = newNavBarAppearance;
         navigationController.navigationBar.standardAppearance = newNavBarAppearance;
@@ -179,7 +179,7 @@ NS_ASSUME_NONNULL_END
         if (@available(iOS 15.0, *)) {
             navigationController.navigationBar.compactScrollEdgeAppearance = newNavBarAppearance;
         }
-    
+    }
     if (![self isBase64String]) {
         // Open a file URL.
         NSURL *fileURL = [[NSBundle mainBundle] URLForResource:self.document withExtension:@"pdf"];
