@@ -170,6 +170,16 @@ NS_ASSUME_NONNULL_END
     
     navigationController.navigationBarHidden = !self.topToolbarEnabled;
     
+    UINavigationBarAppearance *newNavBarAppearance = [self customNavBarAppearance];
+        if (newNavBarAppearance) {
+        navigationController.navigationBar.scrollEdgeAppearance = newNavBarAppearance;
+        navigationController.navigationBar.compactAppearance = newNavBarAppearance;
+        navigationController.navigationBar.standardAppearance = newNavBarAppearance;
+        
+        if (@available(iOS 15.0, *)) {
+            navigationController.navigationBar.compactScrollEdgeAppearance = newNavBarAppearance;
+        }
+    
     if (![self isBase64String]) {
         // Open a file URL.
         NSURL *fileURL = [[NSBundle mainBundle] URLForResource:self.document withExtension:@"pdf"];
@@ -200,6 +210,27 @@ NS_ASSUME_NONNULL_END
         
           [PTOverrides overrideClass:[PTDocumentViewSettingsController class] withClass:[CPTDocumentViewSettingsController class]];
         [self applyLayoutMode];
+    }
+}
+
+#pragma mark - Custom NavigationBar
+    
+- (UINavigationBarAppearance *)customNavBarAppearance {
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *customNavBarAppearance = [[UINavigationBarAppearance alloc] init];
+        
+        // Apply a white background.
+        [customNavBarAppearance configureWithOpaqueBackground];
+        customNavBarAppearance.backgroundColor = [UIColor whiteColor];
+        
+        // Apply white colored normal and large titles.
+        customNavBarAppearance.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+        customNavBarAppearance.largeTitleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+        
+        return customNavBarAppearance;
+    } else {
+        // Handle cases where iOS version is less than 13.0 if needed
+        return nil;
     }
 }
 
