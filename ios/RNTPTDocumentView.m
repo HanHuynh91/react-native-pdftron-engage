@@ -221,7 +221,7 @@ NS_ASSUME_NONNULL_END
         
         NSString *hexColorString = @"F8F8F8";
         
-        UIColor *backgroundBarColor = [self colorWithHexString:hexColorString ];
+        UIColor *backgroundBarColor = [self colorWithHexString:hexColorString];
         
         // Apply color navigation bar background.
         [customNavBarAppearance configureWithOpaqueBackground];
