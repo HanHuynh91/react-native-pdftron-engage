@@ -215,28 +215,45 @@ NS_ASSUME_NONNULL_END
 
 #pragma mark - Custom NavigationBar
     
+#pragma mark - Custom NavigationBar
+   static  NSString *hexColorString = @"FFFFFF";
 - (UINavigationBarAppearance *)customNavBarAppearance {
     if (@available(iOS 13.0, *)) {
         UINavigationBarAppearance *customNavBarAppearance = [[UINavigationBarAppearance alloc] init];
-        
-        NSString *hexColorString = @"F8F8F8";
-        
-        UIColor *backgroundBarColor = [self colorWithHexString:hexColorString];
-        
-        // Apply color navigation bar background.
-        [customNavBarAppearance configureWithOpaqueBackground];
-        UIColor *backgroundColor = backgroundBarColor;
-        customNavBarAppearance.backgroundColor = backgroundColor;
-        
+        UIUserInterfaceStyle currentInterfaceStyle = [self.traitCollection userInterfaceStyle];
+        if (currentInterfaceStyle == UIUserInterfaceStyleDark) {
+          [self applyDarkModeStyles];
+          } else {
+          [self applyDarkModeStyles];
+          }
         // Apply white colored normal and large titles.
         customNavBarAppearance.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
         customNavBarAppearance.largeTitleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
         
         return customNavBarAppearance;
     } else {
-        // Handle cases where iOS version is less than 13.0 if needed
         return nil;
     }
+}
+
+- (void)applyDarkModeStyles {
+      UINavigationBarAppearance *customNavBarAppearance = [[UINavigationBarAppearance alloc] init];
+      hexColorString = @"111111";
+      // Apply a color background.
+      UIColor *backgroundBarColor = [self colorWithHexString:hexColorString ];
+      [customNavBarAppearance configureWithOpaqueBackground];
+      UIColor *backgroundColor = backgroundBarColor;
+      customNavBarAppearance.backgroundColor = backgroundColor;
+}
+
+- (void)applyLightModeStyles {
+      UINavigationBarAppearance *customNavBarAppearance = [[UINavigationBarAppearance alloc] init];
+      hexColorString = @"FFFFFF";
+      // Apply a color background.
+      UIColor *backgroundBarColor = [self colorWithHexString:hexColorString ];
+      [customNavBarAppearance configureWithOpaqueBackground];
+      UIColor *backgroundColor = backgroundBarColor;
+      customNavBarAppearance.backgroundColor = backgroundColor;
 }
 
 - (UIColor*)colorWithHexString:(NSString*)hex
