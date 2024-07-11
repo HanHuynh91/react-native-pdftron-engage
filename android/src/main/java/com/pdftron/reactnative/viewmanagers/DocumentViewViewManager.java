@@ -193,6 +193,11 @@ public class DocumentViewViewManager extends ViewGroupManager<DocumentView> {
         documentView.setThumbnailViewEditingEnabled(thumbnailViewEditingEnabled);
     }
 
+    @ReactProp(name = "saveStateEnabled")
+    public void setSaveStateEnabled(DocumentView documentView, boolean saveState) {
+        documentView.setSaveStateEnabled(saveState);
+    }
+
     public void importAnnotationCommand(int tag, String xfdfCommand, boolean initialLoad) throws PDFNetException {
         DocumentView documentView = mDocumentViews.get(tag);
         if (documentView != null) {
@@ -205,7 +210,7 @@ public class DocumentViewViewManager extends ViewGroupManager<DocumentView> {
     public String toText(int tag, int number) throws PDFNetException {
         DocumentView documentView = mDocumentViews.get(tag);
         if (documentView != null) {
-             return documentView.toText(number);
+            return documentView.toText(number);
         } else {
             throw new PDFNetException("", 0L, getName(), "toTextCommand", "speech file error.");
         }
